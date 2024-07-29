@@ -2,8 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Thank you for your message!');
-        contactForm.reset();
+
+        // Collect form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        // Prepare the email parameters
+        const templateParams = {
+            name: name,
+            email: email,
+            message: message
+        };
+
+        // Send the email
+        emailjs.send('service_35dv362', 'template_aj3th4f', templateParams)
+            .then((response) => {
+                alert('Thank you for your message!');
+                contactForm.reset();
+            })
+            .catch((error) => {
+                console.error('EmailJS error:', error);
+                alert('Failed to send the message. Please try again later.');
+            });
     });
 
     // Simple interactive animation
