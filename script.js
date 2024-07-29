@@ -1,35 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize EmailJS with your user ID
-    emailjs.init('ZFkXqL67Bqa3KYWwV');
-
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Collect form data
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        // Prepare the email parameters
-        const templateParams = {
-            name: name,
-            email: email,
-            message: message
-        };
-
-        // Send the email
-        emailjs.send('service_35dv362', 'template_aj3th4f', templateParams)
-            .then((response) => {
-                alert('Thank you for your message!');
-                contactForm.reset();
-            })
-            .catch((error) => {
-                console.error('EmailJS error:', error);
-                alert('Failed to send the message. Please try again later.');
-            });
-    });
-
     // Simple interactive animation
     const skillsSection = document.getElementById('skills');
     skillsSection.addEventListener('mouseover', () => {

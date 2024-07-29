@@ -1,61 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Stefan Desancic - Cybersecurity Specialist</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-        <script>
-            (function(){
-                emailjs.init("YOUR_USER_ID");
-            })();
-        </script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stefan De Sancic - Cybersecurity Specialist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevents scrolling */
+        }
+        header {
+            text-align: center;
+            padding: 50px;
+        }
+        section {
+            padding: 20px;
+        }
+        #skills {
+            background-color: #1a1a1a;
+            transition: background-color 0.5s;
+        }
+        #skills h2, #skills p {
+            text-align: center;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Puts canvas behind other elements */
+        }
+    </style>
+</head>
 <body>
     <header>
-        <h1>Stefan Desancic</h1>
+        <h1>Stefan De Sancic</h1>
         <p>Cybersecurity Specialist</p>
     </header>
-    <main>
-        <section id="intro">
-            <h2>Welcome</h2>
-            <p>Welcome to my professional website. I specialize in cybersecurity and help businesses protect their digital assets.</p>
-        </section>
-        <section id="skills">
-            <h2>My Skills</h2>
-            <ul>
-                <li>Network Security</li>
-                <li>Penetration Testing</li>
-                <li>Incident Response</li>
-                <li>Threat Intelligence</li>
-                <li>Compliance & Auditing</li>
-            </ul>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project" id="project1">
-                <h3>Project One</h3>
-                <p>Description of the first project.</p>
-            </div>
-            <div class="project" id="project2">
-                <h3>Project Two</h3>
-                <p>Description of the second project.</p>
-            </div>
-        </section>
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <form id="contactForm">
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Stefan Desancic</p>
-    </footer>
-    <script src="script.js"></script>
+    <section id="skills">
+        <h2>My Skills</h2>
+        <p>Network Security, Ethical Hacking, Penetration Testing, Security Audits, Incident Response</p>
+    </section>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simple interactive animation
+            const skillsSection = document.getElementById('skills');
+            skillsSection.addEventListener('mouseover', () => {
+                skillsSection.style.backgroundColor = '#444';
+            });
+
+            skillsSection.addEventListener('mouseout', () => {
+                skillsSection.style.backgroundColor = '#1a1a1a';
+            });
+
+            const canvas = document.createElement('canvas');
+            document.body.appendChild(canvas);
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext('2d');
+
+            const stars = [];
+            for (let i = 0; i < 100; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5,
+                    alpha: Math.random()
+                });
+            }
+
+            function drawStars() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                stars.forEach(star => {
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                    ctx.fill();
+                });
+            }
+
+            function animateStars() {
+                stars.forEach(star => {
+                    star.x += (Math.random() - 0.5) * 2;
+                    star.y += (Math.random() - 0.5) * 2;
+
+                    if (star.x < 0 || star.x > canvas.width) star.x = Math.random() * canvas.width;
+                    if (star.y < 0 || star.y > canvas.height) star.y = Math.random() * canvas.height;
+                });
+                drawStars();
+                requestAnimationFrame(animateStars);
+            }
+
+            animateStars();
+        });
+    </script>
 </body>
 </html>
