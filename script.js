@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize EmailJS with your user ID
+    emailjs.init('ZFkXqL67Bqa3KYWwV');
+
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
